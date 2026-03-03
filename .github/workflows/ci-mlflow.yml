@@ -22,10 +22,10 @@ jobs:
           mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri ./mlruns &
           sleep 10
 
-      - name: Run Training ✅ DIRECT Modelling.py
+      - name: Run Training ✅ DIRECT modelling.py
         run: |
           cd MLProject
-          python Modelling.py
+          python modelling.py
 
       - name: List MLflow experiments
         run: |
