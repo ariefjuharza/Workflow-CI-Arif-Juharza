@@ -1,5 +1,8 @@
-name: telco-churn-workflow
+# MLflow Project config
+name: credit-scoring-ci
 
 entry_points:
   main:
-    command: "python modelling.py"
+    command: "python MLProject/Modelling.py"
+
+conda_env: MLProject/conda.yaml
