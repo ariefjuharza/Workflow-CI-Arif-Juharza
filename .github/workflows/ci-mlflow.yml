@@ -27,9 +27,9 @@ jobs:
           cd MLProject
           python modelling.py
 
-      - name: List MLflow experiments
+      - name: Search MLflow experiments
         run: |
-          mlflow experiments list
+          mlflow experiments search
 
       - name: Upload mlruns artifacts
         uses: actions/upload-artifact@v4
