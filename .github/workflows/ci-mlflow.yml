@@ -13,15 +13,26 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install MLflow & deps
         run: |
-          pip install mlflow==2.19.0 scikit-learn pandas numpy
+          pip install mlflow==2.19.0 scikit-learn pandas numpy joblib
 
-      - name: Run MLflow Project
+      - name: Setup MLflow tracking
         run: |
-          mlflow run . -P entry_point=main
+          mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri ./mlruns &
+          sleep 10
 
-      - name: Show MLflow runs
-        run: mlflow experiments list
+      - name: Run Training ✅ DIRECT Modelling.py
+        run: |
+          cd MLProject
+          python Modelling.py
 
-    # BASIC: No artifact upload needed
+      - name: List MLflow experiments
+        run: |
+          mlflow experiments list
+
+      - name: Upload mlruns artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-artifacts
+          path: mlruns/
