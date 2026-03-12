@@ -1,0 +1,7 @@
+### Test MLflow Serving
+POST http://localhost:5002/invocations
+Content-Type: application/json
+
+{
+  "instances": [
+    [0,0,0,0,0,0,0,0

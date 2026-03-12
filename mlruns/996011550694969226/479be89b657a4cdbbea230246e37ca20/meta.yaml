@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/996011550694969226/479be89b657a4cdbbea230246e37ca20/artifacts
+end_time: 1773331069272
+entry_point_name: ''
+experiment_id: '996011550694969226'
+lifecycle_stage: active
+run_id: 479be89b657a4cdbbea230246e37ca20
+run_name: telco-rf-basic
+run_uuid: 479be89b657a4cdbbea230246e37ca20
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1773331049762
+status: 3
+tags: []
+user_id: BONO DIGITAL STUDIO

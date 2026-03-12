@@ -26,6 +26,7 @@ with mlflow.start_run(run_name="ci-rf"):
     auc = roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
 
     mlflow.log_metric("test_auc", auc)
+    mlflow.sklearn.log_model(model, "model")
 
     print(f"✅ Test AUC: {auc:.3f}")
     print(classification_report(y_test, y_pred))
