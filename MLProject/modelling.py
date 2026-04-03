@@ -5,16 +5,13 @@ from sklearn.metrics import accuracy_score
 import mlflow
 
 def retrain():
-    # Menggunakan autolog untuk kemudahan re-training
     mlflow.sklearn.autolog()
     
-    # Path dataset berasumsi sudah ada/dicopy di root MLProject
     train_path = "breast_cancer_preprocessing/train.csv"
     test_path = "breast_cancer_preprocessing/test.csv"
     
-    # Backup random in case user hasn't copied the folder
     if not os.path.exists(train_path):
-        print("Data preprocessed tidak ditemukan, pastikan copy folder breast_cancer_preprocessing ke dalam MLProject.")
+        print("Preprocessed data not found.")
         return
         
     train_df = pd.read_csv(train_path)
@@ -30,7 +27,7 @@ def retrain():
         clf.fit(X_train, y_train)
         preds = clf.predict(X_test)
         acc = accuracy_score(y_test, preds)
-        print(f"Retraining Model Accuracy: {acc:.4f}")
+        print(f"Retraining Accuracy: {acc:.4f}")
 
 if __name__ == "__main__":
     retrain()
