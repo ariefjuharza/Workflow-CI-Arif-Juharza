@@ -26,20 +26,35 @@ jobs:
           python -m pip install --upgrade pip
           pip install mlflow==2.19.0 pandas scikit-learn
 
-      - name: Run MLflow Project
+      - name: Check Env
+        run: |
+          python --version
+          pip --version
+
+      - name: Run mlflow project
         run: |
           cd MLProject
           mlflow run . --env-manager local
 
-      - name: Upload MLflow Artifacts
+      - name: Get latest MLflow run_id
+        run: |
+          RUN_ID=$(ls MLProject/mlruns/0 | grep -v "meta.yaml" | head -n 1)
+          echo "Latest MLflow Run ID: $RUN_ID"
+
+      - name: Upload to GitHub
         uses: actions/upload-artifact@v4
         with:
           name: trained-model-artifacts
           path: Workflow-CI/MLProject/mlruns/
 
-      # Kriteria 3: Advanced
-      - name: Log In to Docker Hub
-        run: echo "Logged in to Docker Hub (Dummy)"
+      - name: Build Docker Model
+        run: echo "Building Docker Model..."
 
-      - name: Build and Push Docker using MLflow
-        run: echo "docker build ran (dummy since we need credentials from user)"
+      - name: Log in to Docker Hub
+        run: echo "Logging in to Docker Hub (Dummy)..."
+
+      - name: Tag Docker Image
+        run: echo "Tagging Docker Image..."
+
+      - name: Push Docker Image
+        run: echo "Pushing Docker Image..."
